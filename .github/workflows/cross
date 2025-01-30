@@ -1,0 +1,44 @@
+name: Release Build
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        target: [
+          x86_64-pc-windows-gnu,
+          x86_64-apple-darwin,
+          x86_64-unknown-linux-gnu
+        ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Linux Dependencies
+        if: matrix.target == 'x86_64-unknown-linux-gnu'
+        run: sudo apt-get update && sudo apt-get install -y libdbus-1-dev
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          target: ${{ matrix.target }}
+          override: true
+      
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --target ${{ matrix.target }} --features notify-rust/d
+      
+      - name: Upload binaries
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.target }}-bin
+          path: |
+            target/${{ matrix.target }}/release/reminder-cli
+            target/${{ matrix.target }}/release/reminder-cli.exe

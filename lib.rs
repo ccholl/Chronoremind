@@ -94,7 +94,7 @@ pub async fn list_reminders(pool: &SqlitePool) -> Result<()> {
             Ok(trigger_fixed) => {
                 let trigger_utc = trigger_fixed.with_timezone(&Utc);
                 let remain = trigger_utc - now;
-                println!( /
+                println!( 
                     "#{} - {}\n  Time remaining: {}\n  Advice: {}",
                     r.id,
                     r.message,

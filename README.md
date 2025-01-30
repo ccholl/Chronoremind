@@ -149,25 +149,6 @@ The ultimate goal is Foucauldian "self-cultivation" through technical praxis:
 - **Async Runtime** as temporal zendo:
   ```tokio::main``` annotation constructs mechanized meditation space
 
-## Futural Genealogy
-
-Following Flusser's call for "technological imagination", we reserve these philosophy-technical interfaces:
-
-1. **Critical Search Module**  
-   Planned Levenshtein-based fuzzy search exposing memory reconstruction through digital retrieval
-
-2. **Recursive Feedback System**  
-   ```rust
-   struct MetaReminder {
-       original: String,
-       reflections: Vec<Self> // Infinite self-reference
-   }
-   ```
-   Simulating conscious self-reference through technical recursion
-
-3. **Materiality Monitor**  
-   Tracking memory addresses and disk sectors to make digital storage's physicality perceptible
-
 ## Initiation Ritual
 
 ```bash

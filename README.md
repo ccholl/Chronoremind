@@ -12,7 +12,6 @@ Anti-Reminder Tool | Experimental Suggestions | Cross-Platform
 - **Time Parsing** - Natural language format (`+2h30m`/`tomorrow 10am`)
 - **Suggestions** - Integrated DeepSeek API for experimental recommendations
 - **Local Database** - SQLite storage for chronoreminders
-- **Desktop Notifications** - System-level alerts
 - **Lightweight** - Statically compiled binaries with zero dependencies
 
 ## Quick Start 

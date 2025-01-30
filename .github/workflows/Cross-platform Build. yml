@@ -29,8 +29,19 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-multilib
+          sudo apt-get install -y \
+            gcc-aarch64-linux-gnu \
+            gcc-x86_64-linux-gnu \
+            g++-mingw-w64-x86-64
           rustup target add ${{ matrix.target }}
+      
+      - name: Setup linker config
+        run: |
+          mkdir -p ~/.cargo
+          echo '[target.x86_64-pc-windows-gnu]
+          linker = "x86_64-w64-mingw32-gcc"
+          [target.aarch64-unknown-linux-gnu]
+          linker = "aarch64-linux-gnu-gcc"' >> ~/.cargo/config
       
       - name: Build
         uses: actions-rs/cargo@v1
@@ -42,4 +53,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.target }}-bin
-          path: target/${{ matrix.target }}/release/reminder-cli*
+          path: |
+            target/${{ matrix.target }}/release/reminder-cli
+            target/${{ matrix.target }}/release/reminder-cli.exe

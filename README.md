@@ -17,31 +17,6 @@ Anti-Reminder Tool | Experimental Suggestions | Cross-Platform
 
 ## Quick Start 
 
-### Installation
-
-#### Pre-built Binaries
-Download from [GitHub Releases](https://github.com/ccholl/chronoremind /releases):
-
-```bash
-# Linux
-curl -LO https://github.com/ccholl/chronoremind/releases/latest/download/chronoremind-x86_64-unknown-linux-gnu
-chmod +x remindai-x86_64-unknown-chronoremind linux-gnu
-
-# macOS
-curl -LO https://github.com/ccholl/chronoremind/releases/latest/download/chronoremind-x86_64-apple-darwin
-chmod +x remindai-x86_64-apple-darwin
-
-# Windows
-Invoke-WebRequest -Uri https://github.com/ccholl/chronoremind/releases/latest/download/chronoremind-x86_64-pc-windows-gnu.exe -OutFile chronoremind.exe
-```
-
-#### Build from Source
-Requires [Rust toolchain](https://www.rust-lang.org/tools/install):
-
-```bash
-cargo install --git https://github.com/ccholl/chronoremind
-```
-
 ### Basic Usage
 
 ```bash

@@ -1,0 +1,45 @@
+name: Cross-platform Build
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        target: [
+          x86_64-pc-windows-gnu,
+          x86_64-apple-darwin,
+          x86_64-unknown-linux-gnu,
+          aarch64-unknown-linux-gnu
+        ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          target: ${{ matrix.target }}
+          override: true
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-multilib
+          rustup target add ${{ matrix.target }}
+      
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --target ${{ matrix.target }}
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.target }}-bin
+          path: target/${{ matrix.target }}/release/reminder-cli*

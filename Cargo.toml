@@ -17,6 +17,7 @@ clap = { version = "4.4", features = ["derive", "cargo"] }
 chrono = { version = "0.4", features = ["serde"] }
 sqlx = { version = "0.8.3", features = ["sqlite", "runtime-tokio-native-tls", "macros"] }
 tokio = { version = "1.0", features = ["full"] }
+notify-rust = { version = "4.8", default-features = false}
 humantime = "2.1"
 anyhow = "1.0"
 config = "0.15.6"
